@@ -1,5 +1,15 @@
 " .vimrc
 
+" Colors {{{
+syntax enable
+set background=dark
+if has('gui_running')
+    let g:solarized_termcolors=256
+else
+    let g:solarized_termcolors=16
+endif
+" colorscheme solarized
+" }}}
 " Tabs and Spaces {{{
 set tabstop=4                                           " number of visual spaces per TAB
 set softtabstop=4                                       " numer of spaces in tab when editing
@@ -12,7 +22,7 @@ set nocompatible                                        " Use vim like it's 2017
 set number                                              " show line numbers
 set relativenumber                                      " show relative line numbers
 set showcmd                                             " show command in bottom bar       
-set cursorline                                          " highlight the current line
+" set cursorline                                          " highlight the current line
 set wildmenu                                            " visual autocomplete for command menu
 set showmatch                                           " highlight matching [{()}]
 set noshowmode                                          " hide --INSERT-- in status, displayed in lightline
@@ -50,4 +60,40 @@ execute pathogen#infect()
 set laststatus=2
 " }}}
 
+" netrw {{{
+let g:netrw_liststyle = 1       " Explorer list style = Detailed           
+let g:netrw_banner = 0          " Hide banner
+let g:netrw_browse_split = 3    " Open files in new tab
+let g:netrw_winsize = 33        " 33%
+
+fun! VexToggle(dir)
+    if exists("t:vex_buf_nr")
+        call VexClose()
+    else
+        call VexOpen(a:dir)
+    endif
+endf
+
+fun! VexOpen(dir)
+    let g:netrw_browse_split=4
+    execute "Vexplore " . a:dir
+    let t:vex_buf_nr = bufnr("%")
+endf
+
+fun! VexClose()
+    let cur_win_nr = winnr()
+    let target_nr = (cur_win_nr == 1 ? winnr("#") : cur_win_nr)
+
+    1wincmd w
+    close
+    unlet t:vex_buf_nr
+
+    execute (target_nr - 1) . "wincmd w"
+    "call NormalizeWidths()
+endf
+
+noremap <Leader>` :call VexToggle("")<CR>
+" }}}
+
 " vim:foldmethod=marker:foldlevel=0
+
