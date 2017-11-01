@@ -1,14 +1,17 @@
 " .vimrc
 
+" Pathogen {{{
+execute pathogen#infect()
+" }}}
 " Colors {{{
 syntax enable
 set background=dark
 if has('gui_running')
-    let g:solarized_termcolors=256
+    set background=light
 else
-    let g:solarized_termcolors=16
+    set background=dark
 endif
-" colorscheme solarized
+colorscheme solarized
 " }}}
 " Tabs and Spaces {{{
 set tabstop=4                                           " number of visual spaces per TAB
@@ -26,6 +29,7 @@ set showcmd                                             " show command in bottom
 set wildmenu                                            " visual autocomplete for command menu
 set showmatch                                           " highlight matching [{()}]
 set noshowmode                                          " hide --INSERT-- in status, displayed in lightline
+set laststatus=2                                        " additional status line for lightline
 " }}}
 " Searching {{{
 set hlsearch                                            " Highlight searsh results
@@ -55,9 +59,7 @@ set foldmethod=indent       " fold based on indent
 nnoremap <space> za         
 " }}}
 " Plugins {{{
-execute pathogen#infect()
 
-set laststatus=2
 " }}}
 
 " netrw {{{
