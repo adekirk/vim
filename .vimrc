@@ -13,6 +13,9 @@ else
 endif
 colorscheme solarized
 " }}}
+" Editor {{{
+set nowrap                                              " no line wrap
+" }}}
 " Tabs and Spaces {{{
 set tabstop=4                                           " number of visual spaces per TAB
 set softtabstop=4                                       " numer of spaces in tab when editing
@@ -25,8 +28,8 @@ set nocompatible                                        " Use vim like it's 2017
 set number                                              " show line numbers
 set relativenumber                                      " show relative line numbers
 set showcmd                                             " show command in bottom bar       
-" set cursorline                                          " highlight the current line
 set wildmenu                                            " visual autocomplete for command menu
+set lazyredraw                                          " only redraw when needed, not in macros
 set showmatch                                           " highlight matching [{()}]
 set noshowmode                                          " hide --INSERT-- in status, displayed in lightline
 set laststatus=2                                        " additional status line for lightline
@@ -35,7 +38,7 @@ set laststatus=2                                        " additional status line
 set hlsearch                                            " Highlight searsh results
 set incsearch                                           " Set incremental search
 " }}}
-" ESC hids search highlight {{{
+" ESC hides search highlight {{{
 noremap <silent> <ESC> :nohlsearch<BAR>:echo<CR>       
 " }}}
 " Syntax {{{
@@ -48,7 +51,7 @@ inoremap jk <ESC>
 " Misc {{{
 set modelines=1                                         " add line for lightline
 
-map <leader>s :source ~\.vimrc<CR>                      
+map <leader>s :source ~\.vimrc<CR>                      " \s reloads .vimrc
 " }}}
 " Folding {{{
 set foldenable              " enable folding
@@ -57,9 +60,6 @@ set foldnestmax=10          " 10 nested folds max
 set foldmethod=indent       " fold based on indent
 
 nnoremap <space> za         
-" }}}
-" Plugins {{{
-
 " }}}
 
 " netrw {{{
@@ -98,4 +98,3 @@ noremap <Leader>` :call VexToggle("")<CR>
 " }}}
 
 " vim:foldmethod=marker:foldlevel=0
-
