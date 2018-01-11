@@ -3,6 +3,20 @@
 " Pathogen {{{
 execute pathogen#infect()
 " }}}
+
+" lightline {{{
+let g:lightline = {
+    \ 'colorscheme': 'wombat',
+    \ 'active': {
+    \   'left': [ [ 'mode', 'paste' ],
+    \             [ 'gitbranch', 'readonly', 'filename', 'modified' ] ]
+    \ },
+    \ 'component_function': {
+    \   'gitbranch': 'gitbranch#name'
+    \ },
+    \ }
+" }}}
+
 " Colors {{{
 syntax enable
 set background=dark
@@ -61,7 +75,6 @@ set foldmethod=indent       " fold based on indent
 
 nnoremap <space> za         
 " }}}
-
 " netrw {{{
 let g:netrw_liststyle = 1       " Explorer list style = Detailed           
 let g:netrw_banner = 0          " Hide banner
