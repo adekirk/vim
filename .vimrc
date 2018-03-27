@@ -4,28 +4,16 @@
 execute pathogen#infect()
 " }}}
 
-" lightline {{{
-let g:lightline = {
-    \ 'colorscheme': 'wombat',
-    \ 'active': {
-    \   'left': [ [ 'mode', 'paste' ],
-    \             [ 'gitbranch', 'readonly', 'filename', 'modified' ] ]
-    \ },
-    \ 'component_function': {
-    \   'gitbranch': 'gitbranch#name'
-    \ },
-    \ }
-" }}}
-
 " Colors {{{
-syntax enable
+syntax on
+color dracula
+colorscheme default
 set background=dark
 if has('gui_running')
     set background=light
 else
     set background=dark
 endif
-colorscheme solarized
 " }}}
 " Editor {{{
 set nowrap                                              " no line wrap
@@ -41,29 +29,27 @@ set smarttab                                            " tab to the next indent
 set nocompatible                                        " Use vim like it's 2017
 set number                                              " show line numbers
 set relativenumber                                      " show relative line numbers
-set showcmd                                             " show command in bottom bar       
+set showcmd                                             " show command in bottom bar
 set wildmenu                                            " visual autocomplete for command menu
 set lazyredraw                                          " only redraw when needed, not in macros
 set showmatch                                           " highlight matching [{()}]
-set noshowmode                                          " hide --INSERT-- in status, displayed in lightline
-set laststatus=2                                        " additional status line for lightline
+set noshowmode                                          " hide --INSERT-- in status, displayed in airline
 " }}}
 " Searching {{{
 set hlsearch                                            " Highlight searsh results
 set incsearch                                           " Set incremental search
 " }}}
 " ESC hides search highlight {{{
-noremap <silent> <ESC> :nohlsearch<BAR>:echo<CR>       
+noremap <silent> <ESC> :nohlsearch<BAR>:echo<CR>
 " }}}
 " Syntax {{{
 syntax enable                                           " enable syntax processing
 filetype on                                             " syntax highlight based on file extension
 " }}}
 " Mapping {{{
-inoremap jk <ESC>                                     
+inoremap jk <ESC>
 " }}}
 " Misc {{{
-set modelines=1                                         " add line for lightline
 
 map <leader>s :source ~\.vimrc<CR>                      " \s reloads .vimrc
 " }}}
@@ -73,10 +59,10 @@ set foldlevel=10            " open upto 10 levels by default
 set foldnestmax=10          " 10 nested folds max
 set foldmethod=indent       " fold based on indent
 
-nnoremap <space> za         
+nnoremap <space> za
 " }}}
 " netrw {{{
-let g:netrw_liststyle = 1       " Explorer list style = Detailed           
+let g:netrw_liststyle = 1       " Explorer list style = Detailed
 let g:netrw_banner = 0          " Hide banner
 let g:netrw_browse_split = 3    " Open files in new tab
 let g:netrw_winsize = 33        " 33%
@@ -109,5 +95,17 @@ endf
 
 noremap <Leader>` :call VexToggle("")<CR>
 " }}}
+
+" csv {{{
+filetype plugin on
+" }}}
+
+" airline {{{
+set laststatus=2                                        " additional status line for airline
+let g:airline#extensions#tabline#enabled = 0
+"let g:airline_powerline_fonts = 1
+"let g:airline_section_z = airline#section#create_right(['%l','%c'])
+" }}}
+
 
 " vim:foldmethod=marker:foldlevel=0
