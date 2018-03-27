@@ -48,6 +48,15 @@ filetype on                                             " syntax highlight based
 " }}}
 " Mapping {{{
 inoremap jk <ESC>
+
+" move between buffers
+map <C-Left> <ESC>:bprev<CR>
+map <C-Right> <ESC>:bnext<CR>
+
+" switch to left / right split (mostly for netrw)
+map <C-h> <C-W>h
+map <C-l> <C-W>l
+
 " }}}
 " Misc {{{
 
@@ -63,7 +72,7 @@ nnoremap <space> za
 " }}}
 " netrw {{{
 let g:netrw_liststyle = 1       " Explorer list style = Detailed
-let g:netrw_banner = 0          " Hide banner
+let g:netrw_banner = 1          " Hide banner
 let g:netrw_browse_split = 3    " Open files in new tab
 let g:netrw_winsize = 33        " 33%
 
@@ -102,7 +111,9 @@ filetype plugin on
 
 " airline {{{
 set laststatus=2                                        " additional status line for airline
+let g:airline_theme = 'wombat'
 let g:airline#extensions#tabline#enabled = 0
+let g:airline#extensions#branch#enabled = 1
 "let g:airline_powerline_fonts = 1
 "let g:airline_section_z = airline#section#create_right(['%l','%c'])
 " }}}
