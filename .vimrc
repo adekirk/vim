@@ -1,5 +1,7 @@
 " .vimrc
 
+set nocompatible                                        " Use Vim settings ratther than Vi settings.
+
 " Pathogen {{{
 execute pathogen#infect()
 " }}}
@@ -15,35 +17,56 @@ else
     set background=dark
 endif
 " }}}
-" Editor {{{
+" Tabs, Spaces and indentation {{{
 set nowrap                                              " no line wrap
-" }}}
-" Tabs and Spaces {{{
 set tabstop=4                                           " number of visual spaces per TAB
 set softtabstop=4                                       " numer of spaces in tab when editing
 set expandtab                                           " tabs are spaces
 set shiftwidth=4                                        " number of spaces that correspond to a single tab
 set smarttab                                            " tab to the next indent
+set autoindent                                          " new lines inherit indentation of the previous lines
+filetype plugin indent on                               " Smart auto indentation
 " }}}
-" UI Configuration {{{
-set nocompatible                                        " Use vim like it's 2017
+" Configuration {{{
+set title                                               " set the window title reflecting current file
 set number                                              " show line numbers
 set relativenumber                                      " show relative line numbers
-set showcmd                                             " show command in bottom bar
+set showcmd                                             " show incomplete command in bottom bar
 set wildmenu                                            " visual autocomplete for command menu
 set lazyredraw                                          " only redraw when needed, not in macros
 set showmatch                                           " highlight matching [{()}]
 set noshowmode                                          " hide --INSERT-- in status, displayed in airline
+set backspace=indent,eol,start                          " allow backspacing over intentation, line breaks and instert start.
+set history=1000                                        " set big history of executed commands
+set autoread                                            " automatically re-read files if unmodified inside Vim
+set laststatus=2                                        " additional status line for airline
+set tabpagemax=40                                       " maximum number of tab pages that can be opened from the commmand line
+"set cursorline                                          " highlight the current line
+"highlight CursorLine ctermbg=darkgrey
+set exrc                                                " project specific .vimrc
+"}}}
+
+" Swap and Backup {{{
+set directory=$USERPROFILE/vimfiles/swp//
+set nobackup
+set nowb
+
 " }}}
 " Searching {{{
 set hlsearch                                            " Highlight searsh results
 set incsearch                                           " Set incremental search
+set ignorecase                                          " ignore case when searching
+" }}}
+" Text Rendering {{{
+set encoding=utf-8                                      " unicode
+set scrolloff=3                                         " number of screen lines to keep above and below the cursor
+set sidescrolloff=5                                     " number of screen columns to keep left and right of the cursor
+syntax enable                                           " enable syntax processing
 " }}}
 " ESC hides search highlight {{{
 noremap <silent> <ESC> :nohlsearch<BAR>:echo<CR>
 " }}}
 " Syntax {{{
-syntax enable                                           " enable syntax processing
 filetype on                                             " syntax highlight based on file extension
 " }}}
 " Mapping {{{
@@ -73,7 +96,7 @@ nnoremap <space> za
 " netrw {{{
 let g:netrw_liststyle = 1       " Explorer list style = Detailed
 let g:netrw_banner = 1          " Hide banner
-let g:netrw_browse_split = 3    " Open files in new tab
+let g:netrw_browse_split = 4    " Load file in split and keep netrw
 let g:netrw_winsize = 33        " 33%
 
 fun! VexToggle(dir)
@@ -110,7 +133,6 @@ filetype plugin on
 " }}}
 
 " airline {{{
-set laststatus=2                                        " additional status line for airline
 let g:airline_theme = 'wombat'
 let g:airline#extensions#tabline#enabled = 0
 let g:airline#extensions#branch#enabled = 1
