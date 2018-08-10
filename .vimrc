@@ -73,8 +73,8 @@ filetype on                                             " syntax highlight based
 inoremap jk <ESC>
 
 " move between buffers
-map <C-Left> <ESC>:bprev<CR>
-map <C-Right> <ESC>:bnext<CR>
+map <C-J> <ESC>:bprev<CR>
+map <C-K> <ESC>:bnext<CR>
 
 " switch to left / right split (mostly for netrw)
 map <C-h> <C-W>h
