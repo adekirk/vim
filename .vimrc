@@ -31,6 +31,9 @@ filetype plugin indent on                               " Smart auto indentation
 set title                                               " set the window title reflecting current file
 set number                                              " show line numbers
 set relativenumber                                      " show relative line numbers
+augroup toggle_relative_number                          " switch to absolute numbers is Insert Mode and revert back to relative numbers is Normal Mode
+autocmd InsertEnter * :setlocal norelativenumber | set number
+autocmd InsertLeave * :setlocal relativenumber
 set showcmd                                             " show incomplete command in bottom bar
 set wildmenu                                            " visual autocomplete for command menu
 set lazyredraw                                          " only redraw when needed, not in macros
