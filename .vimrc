@@ -85,7 +85,7 @@ map <C-l> <C-W>l
 
 " }}}
 " Misc {{{
-
+let mapleader = "\<space>"
 map <leader>s :source ~\.vimrc<CR>                      " \s reloads .vimrc
 " }}}
 " Folding {{{
