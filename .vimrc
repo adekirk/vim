@@ -26,6 +26,8 @@ set shiftwidth=4                                        " number of spaces that 
 set smarttab                                            " tab to the next indent
 set autoindent                                          " new lines inherit indentation of the previous lines
 filetype plugin indent on                               " Smart auto indentation
+" match ErrorMsg '\s\+$'                                  " Highlight trailing whitespace
+autocmd BufWritePre * :%s/\s\+$//e                      " remove trailing whitespaces automatically
 " }}}
 " Configuration {{{
 set title                                               " set the window title reflecting current file
